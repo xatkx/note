@@ -43,5 +43,24 @@ export const deleteNote = async id => {
 }
 
 // edita un dato especifico DEL server
+export const putOneNote = async nota => {
 
+    const option = {
+        headers: { 'Content-Type': 'Application/json'},
+        body: JSON.stringify(nota),
+        method: 'PUT'
+    }
+
+    try {
+        return await (await fetch(`${Api.url}/${nota.id}`, option))
+    } catch (error) {
+        console.log(error)
+    }
+}
 // trae un dato especifico del server
+
+export const getOneNote = async id => {
+    try {
+        return await ( await fetch(`${Api.url}/${id}`)).json()
+    } catch(err) {console.log(err)}
+}

@@ -247,7 +247,7 @@ label {
  .notification {
 
     position: fixed;
-    bottom: 10%;
+    bottom: 5%;
     left: 30%;
     width: 40%;
     min-height: 4rem;

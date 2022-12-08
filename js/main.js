@@ -1,5 +1,5 @@
 import { deleteNote } from './API.js'
-import { createForm, notificationRender, printAllNote } from './function.js'
+import { createForm, notificationRender, printAllNote, editHandle } from './function.js'
 import { btn_Create, content_note } from './select.js'
 (()=> {
 
@@ -17,7 +17,10 @@ import { btn_Create, content_note } from './select.js'
     const noteHnalde = event => {
         const mybtn = event.target;
         const id = mybtn.parentElement.getAttribute('data-id')
-        if(mybtn.classList.contains('edit'))console.log(mybtn)
+        if(mybtn.classList.contains('edit'))
+        {
+            editHandle(id)
+        }
         if(mybtn.classList.contains('delete') && confirm('Deseas borrar esta nota'))
         {
 

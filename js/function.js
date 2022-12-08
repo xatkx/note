@@ -1,6 +1,8 @@
-import { getAllNote, postNote } from "./API.js";
+import { getAllNote, postNote, getOneNote, putOneNote } from "./API.js";
 import { content_form, content_note, main, modalForm } from "./select.js";
 
+
+let mode = false,id;
 
  // render el formulario y lo muestra en la pag
 const formRender = () => {
@@ -50,19 +52,48 @@ export const formhandle = async event => {
 
     if(!validate(Object.values(note)))
     {
-        console.log('todos los campos son necesarios')
+        notificationRender('todos los campos son necesarios','error')
         return
     }
+    
+    // mode edit
+
+    if(mode)
+    {
+        //edit
+
+        note.id = id;
+        await putOneNote(note)
+
+        event.target.parentElement.remove()
+        main.classList.remove('blur')
+        notificationRender('guardado','success')
+        printAllNote()
+
+        return
+    } 
+
     try {
         
         await postNote(note)
         event.target.parentElement.remove()
         main.classList.remove('blur')
+        notificationRender('Agregado correctamente','success')
         printAllNote()
     } catch (error) {
         console.log(error)
     }
 
+}
+
+export const editHandle = async ids => {
+
+    mode = true;
+    id = ids
+    const nota = await getOneNote(id);
+    createForm()
+    document.querySelector('#title').value = nota.title
+    document.querySelector('#msj').value = nota.mensaje
 }
 
 // recorre una array de datos e imprime en  todos las notas

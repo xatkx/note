@@ -4,7 +4,7 @@ const Api = {
 }
 
 
-
+// trae los datos del server
 export const getAllNote = async () => {
     try {
 
@@ -14,7 +14,7 @@ export const getAllNote = async () => {
         console.log(error)
     }
 }
-
+// envia los datos al server
 export const postNote = async nota => {
     const option = {
         headers: { 'Content-Type': 'application/json'},
@@ -28,3 +28,20 @@ export const postNote = async nota => {
 
     } catch (err) { console.log(err)}
 }
+
+// borra los datos del server
+
+export const deleteNote = async id => {
+
+    const option = {
+        method: 'DELETE'
+    }
+    try {
+        return await ( await fetch(`${Api.url}/${id}`, option)).json()
+
+    } catch (err) {console.log(err)}
+}
+
+// edita un dato especifico DEL server
+
+// trae un dato especifico del server

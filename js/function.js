@@ -25,12 +25,13 @@ const formRender = () => {
     `
 
     document.body.appendChild(content)
+    return content
 
 }
 
-export const createForm = () => {
+export const createForm = event => {
 
-    formRender()
+    const content = formRender()
     main.classList.add('blur')
     content.addEventListener('submit', formhandle);
 }
@@ -67,13 +68,13 @@ export const formhandle = async event => {
 // recorre una array de datos e imprime en  todos las notas
 export const printAllNote = async () => {
 
+    const allNote = await getAllNote(); // pide los datos
+    // limpia el html de contenedor de notas
     while(content_note.firstChild)
     {
         content_note.firstChild.remove()
     }
-
-    const allNote = await getAllNote();
-
+    // recorre la array de datos y la imprime en patalla
     for (let i = 0; i < allNote.length; i++) {
         const nota = allNote[i];
         const element = renderNote(nota)
@@ -84,13 +85,13 @@ export const printAllNote = async () => {
  // devuelve una nota Html con los datos
 const renderNote = dateNote => {
 
-    const {title, mensaje} = dateNote;
+    const {title, mensaje, id} = dateNote;
     const nota = document.createElement('div');
     nota.classList.add('note')
     nota.innerHTML =
     `
     <div class="cardheader">
-        <div class="handle">
+        <div class="handle" data-id="${id}">
             <a class="edit fa-solid fa-pen-to-square"></a>
             <a class="delete fa-solid fa-rectangle-xmark"></a>
         </div>
@@ -103,6 +104,27 @@ const renderNote = dateNote => {
 `
  
     return nota
+}
+
+// notificattion
+export const notificationRender = (msj,type) => {
+    if(document.querySelector('.notification')) return
+
+    const div = document.createElement('div');
+    div.classList.add('notification');
+
+    div.textContent = msj
+
+    if(type === 'error')
+    {
+        div.classList.add('error')
+    } else if(type === 'success')
+    {
+        div.classList.add('success')
+    }
+
+    document.body.appendChild(div)
+    setTimeout(() => div.remove() ,2000)
 }
 
 // revisa si esta vaciao una array de string 

@@ -67,6 +67,7 @@ body {
  {
     background: #393e46;
     color: rgb(255, 254, 254);
+    cursor: pointer;
     
  }
 
@@ -240,3 +241,38 @@ label {
 .blur {
     filter: blur(4px);
 }
+
+ /* notificatiton  */
+
+ .notification {
+
+    position: fixed;
+    bottom: 10%;
+    left: 30%;
+    width: 40%;
+    min-height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    box-shadow: 5px 5px 5px rgb(5, 5, 5,0.3);
+
+    font-weight: bold;
+    font-size: larger;
+    font-style: oblique;
+ }
+
+ .error {
+    filter: blur(0.5px);
+    background-color: #ca0000;
+    color: #2c0000;
+ }
+
+ .success {
+    filter: blur(0.5px);
+    background-color: #00ca22;
+    color: #002c14;
+ }

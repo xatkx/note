@@ -1,6 +1,6 @@
 import { deleteNote } from './API.js'
 import { createForm, notificationRender, printAllNote, editHandle } from './function.js'
-import { btn_Create, content_note } from './select.js'
+import { btn_Create, btn_menu, content_menu, content_note } from './select.js'
 (()=> {
 
 
@@ -10,6 +10,11 @@ import { btn_Create, content_note } from './select.js'
         // crea un evet de escucha al boton de crear nueva nota cuando el documento carga
         btn_Create.addEventListener('click', createHandle);
         content_note.addEventListener('click', noteHnalde);
+        btn_menu.addEventListener('click', menuH)
+    }
+
+    const menuH = (event) => {
+        content_menu.classList.toggle('hidden')
     }
 
 // maneja el boton de crear nueva nota

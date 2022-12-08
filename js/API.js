@@ -14,3 +14,17 @@ export const getAllNote = async () => {
         console.log(error)
     }
 }
+
+export const postNote = async nota => {
+    const option = {
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(nota),
+        method: 'POST'
+    }
+
+    try {
+        console.log(JSON.stringify(nota))
+        return await fetch(`${Api.url}`,option);
+
+    } catch (err) { console.log(err)}
+}

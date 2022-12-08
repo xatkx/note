@@ -112,7 +112,7 @@ body {
  
  .note .cardheader {
      text-align: center;
-     margin-bottom: 50px;
+     margin-bottom: 20px;
      display: flex;
      flex-direction: column;
 }
@@ -121,15 +121,27 @@ body {
 {
     padding: 0;
     margin: 0;
-    padding-top: 20px;
+    font-weight:bold ;
+    text-transform: capitalize;
+    font-family: cursive;
+    font-style: oblique;
+    padding-top: 10px;
     border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
     border-left: ridge #0092ca 2px;
+    border-bottom: ridge 2px #0092ca;
     border-top: ridge #0092ca 2px;
 }
 .note .Cardbody {
-    font-style: italic;
-    margin: 10px;
+    
+    border-top-right-radius: 25px;
+    border: #0092ca ridge 2px;
+    border-bottom: none;
+    border-left: none;
+    padding: 0 10px;
     font-weight: bold;
+    
+
 }
 
 .handle {

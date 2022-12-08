@@ -2,8 +2,8 @@ import { getAllNote, postNote } from "./API.js";
 import { content_form, content_note, main, modalForm } from "./select.js";
 
 
-
-export const formRender = () => {
+ // render el formulario y lo muestra en la pag
+const formRender = () => {
     const content = document.createElement('div');
     content.classList.add('modal-form')
     content.innerHTML = 
@@ -25,11 +25,17 @@ export const formRender = () => {
     `
 
     document.body.appendChild(content)
-    main.classList.add('blur')
-    content.addEventListener('submit', formhandle);
 
 }
 
+export const createForm = () => {
+
+    formRender()
+    main.classList.add('blur')
+    content.addEventListener('submit', formhandle);
+}
+
+// maneja el formulario para agregar notas nuevas
 export const formhandle = async event => {
     event.preventDefault()
 
@@ -58,7 +64,7 @@ export const formhandle = async event => {
 
 }
 
-
+// recorre una array de datos e imprime en  todos las notas
 export const printAllNote = async () => {
 
     while(content_note.firstChild)
@@ -75,7 +81,7 @@ export const printAllNote = async () => {
         content_note.appendChild(element)
     }
 }
-
+ // devuelve una nota Html con los datos
 const renderNote = dateNote => {
 
     const {title, mensaje} = dateNote;
@@ -98,6 +104,8 @@ const renderNote = dateNote => {
  
     return nota
 }
+
+// revisa si esta vaciao una array de string 
 const validate = list => {
     for(let x = 0; x < list.length;x++)
     {

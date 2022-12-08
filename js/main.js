@@ -14,8 +14,23 @@ import { btn_Create, btn_menu, content_menu, content_note } from './select.js'
     }
 
     const menuH = (event) => {
-        content_menu.classList.toggle('hidden')
+        
+        if(!event) 
+        {
+            content_menu.classList.add('hidden')
+            return
+        }
+
+        if(content_menu.classList.contains('hidden'))
+        {
+            content_menu.classList.remove('hidden')
+        } else 
+        {
+            content_menu.classList.add('hidden')
+        }
     }
+
+    
 
 // maneja el boton de crear nueva nota
     const createHandle = event => createForm() // llama la function del dir /js/function
@@ -35,6 +50,11 @@ import { btn_Create, btn_menu, content_menu, content_note } from './select.js'
         }
 
     }
+
+
+    document.querySelector('.main').addEventListener('click', event => {
+        menuH(false)
+    })
 
     // se activa al cargar el dom pd: es irrelevante ya que a la etiqueta script esta settiada para que se active al cargar el dom con  defer :u 
     document.addEventListener('DOMContentLoaded', initApp)

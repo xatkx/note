@@ -1,6 +1,6 @@
 
 const Api = {
-    url: 'http://127.0.0.1:9999/Notas'
+    url: 'http://127.0.0.1:9000/notas'
 }
 
 
@@ -16,6 +16,7 @@ export const getAllNote = async () => {
 }
 // envia los datos al server
 export const postNote = async nota => {
+    console.log(nota)
     const option = {
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(nota),
@@ -43,7 +44,7 @@ export const deleteNote = async id => {
 }
 
 // edita un dato especifico DEL server
-export const putOneNote = async nota => {
+export const putOneNote = async (nota,id) => {
 
     const option = {
         headers: { 'Content-Type': 'Application/json'},
@@ -52,7 +53,7 @@ export const putOneNote = async nota => {
     }
 
     try {
-        return await (await fetch(`${Api.url}/${nota.id}`, option))
+        return await (await fetch(`${Api.url}/${id}`, option))
     } catch (error) {
         console.log(error)
     }

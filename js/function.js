@@ -46,7 +46,7 @@ export const formhandle = async event => {
 
     const note = 
     {
-        title: document.querySelector('#title').value,
+        titulo: document.querySelector('#title').value,
         mensaje: document.querySelector('#msj').value
     }
 
@@ -61,9 +61,7 @@ export const formhandle = async event => {
     if(mode)
     {
         //edit
-
-        note.id = id;
-        await putOneNote(note)
+        await putOneNote(note,id)
 
         event.target.parentElement.remove()
         main.classList.remove('blur')
@@ -90,10 +88,15 @@ export const editHandle = async ids => {
 
     mode = true;
     id = ids
-    const nota = await getOneNote(id);
-    createForm()
-    document.querySelector('#title').value = nota.title
-    document.querySelector('#msj').value = nota.mensaje
+    try {
+        const nota = await getOneNote(id);
+        createForm()
+        document.querySelector('#title').value = nota.titulo
+        document.querySelector('#msj').value = nota.mensaje
+        
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 // recorre una array de datos e imprime en  todos las notas
@@ -116,17 +119,17 @@ export const printAllNote = async () => {
  // devuelve una nota Html con los datos
 const renderNote = dateNote => {
 
-    const {title, mensaje, id} = dateNote;
+    const {titulo, mensaje, _id} = dateNote;
     const nota = document.createElement('div');
     nota.classList.add('note')
     nota.innerHTML =
     `
     <div class="cardheader">
-        <div class="handle" data-id="${id}">
+        <div class="handle" data-id="${_id}">
             <a class="edit fa-solid fa-pen-to-square"></a>
             <a class="delete fa-solid fa-rectangle-xmark"></a>
         </div>
-        <span class="noteTitle">${title}</span>
+        <span class="noteTitle">${titulo}</span>
     </div>
         <div class="Cardbody">
         <span class="msj">${mensaje}</span>

@@ -141,6 +141,7 @@ body {
     border-left: none;
     padding: 0 10px;
     font-weight: bold;
+    word-wrap: break-word;  
     
 
 }
